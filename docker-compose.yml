@@ -1,0 +1,19 @@
+version: "3.4"
+services:
+  postgresql:
+    image: "postgres"
+    container_name: "postgresql"
+    shm_size: 1g
+    volumes:
+      - postgresql:/var/lib/pgsql/12/data
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: pg_isready -U postgres -d marketing_agency_development
+      interval: 10s
+      timeout: 3s
+    environment:
+      POSTGRES_PASSWORD: password
+
+volumes:
+  postgresql:
