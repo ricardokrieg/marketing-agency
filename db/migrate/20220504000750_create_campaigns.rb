@@ -3,6 +3,7 @@ class CreateCampaigns < ActiveRecord::Migration[7.0]
     create_table :campaigns do |t|
       t.string :title, null: false
       t.text :content, null: false
+      t.text :targets, null: false
 
       t.timestamps
     end

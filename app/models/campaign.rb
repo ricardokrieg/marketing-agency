@@ -1,3 +1,7 @@
 class Campaign < ApplicationRecord
-  validates :title, :content, presence: true
+  validates :title, :content, :targets, presence: true
+
+  def target_list
+    targets.split("\n")
+  end
 end

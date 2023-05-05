@@ -20,6 +20,7 @@ describe "Campaigns" do
     expect(page).to have_current_path(campaign_path(campaign))
     expect(page).to have_content 'First Campaign'
     expect(page).to have_content campaign.content
+    expect(page).to have_content campaign.target_list.first
   end
 
   it "creates a new campaign" do
@@ -27,6 +28,7 @@ describe "Campaigns" do
 
     fill_in 'Title', with: 'My Campaign'
     fill_in 'Content', with: 'This is my campaign'
+    fill_in 'Targets', with: "target1\ntarget2"
     click_button 'Create'
 
     expect(page).to have_current_path(campaigns_path)
@@ -38,11 +40,14 @@ describe "Campaigns" do
 
     fill_in 'Title', with: 'My Campaign'
     fill_in 'Content', with: 'This is my campaign'
+    fill_in 'Targets', with: "target1\ntarget2"
     click_button 'Update'
 
     expect(page).to have_current_path(campaign_path(campaign))
     expect(page).to have_content 'My Campaign'
     expect(page).to have_content 'This is my campaign'
+    expect(page).to have_content "target1"
+    expect(page).to have_content "target2"
   end
 
   it "deletes a campaign" do

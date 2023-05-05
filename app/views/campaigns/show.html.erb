@@ -6,6 +6,15 @@
 
   <dt>Content</dt>
   <dd><%= @campaign.content %></dd>
+
+  <dt>Targets</dt>
+  <dd>
+    <ul>
+      <% @campaign.target_list.each do |target| %>
+        <li><%= target %></li>
+      <% end %>
+    </ul>
+  </dd>
 </dl>
 
 <%= button_to 'Delete', campaign_path(@campaign), method: :delete %>
