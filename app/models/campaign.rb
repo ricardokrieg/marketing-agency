@@ -1,3 +1,3 @@
 class Campaign < ApplicationRecord
-  validates :title, presence: true
+  validates :title, :content, presence: true
 end

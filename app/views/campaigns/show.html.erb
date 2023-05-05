@@ -3,6 +3,9 @@
 <dl>
   <dt>Title</dt>
   <dd><%= @campaign.title %></dd>
+
+  <dt>Content</dt>
+  <dd><%= @campaign.content %></dd>
 </dl>
 
 <%= button_to 'Delete', campaign_path(@campaign), method: :delete %>

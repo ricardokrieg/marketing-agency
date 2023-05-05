@@ -57,6 +57,7 @@ group :development, :test do
   gem "test-prof"
   gem 'rails-controller-testing'
   gem 'capybara'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
