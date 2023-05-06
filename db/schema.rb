@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_04_000750) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_06_122258) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_000750) do
     t.string "title", null: false
     t.text "content", null: false
     t.text "targets", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "instagram_id"
+    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
