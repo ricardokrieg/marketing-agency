@@ -3,10 +3,14 @@ class MessageProcessor
     @message = message
   end
 
-  def deliver_with(account)
+  def deliver_with(account, deliver)
+    deliver.deliver(@message, account)
+
     @message.update!(
       delivered_at: Time.zone.now,
       account: account
     )
+  rescue => e
+    ErrorMonitor.notify(e)
   end
 end
