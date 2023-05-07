@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :message do
+    campaign
+    profile
+    content { Faker::Lorem.paragraph(sentence_count: 10, random_sentences_to_add: 10) }
+  end
+
   factory :profile do
     instagram_id { Faker::Number.number(digits: 10) }
     username { Faker::Internet.username(specifier: 10..15) }

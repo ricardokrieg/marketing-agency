@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  validates :instagram_id, :username, uniqueness: true, allow_nil: true
   validate :instagram_id_or_username
 
   private

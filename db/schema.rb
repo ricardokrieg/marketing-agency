@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_06_122258) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_07_005423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -23,11 +23,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_122258) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "campaign_id", null: false
+    t.uuid "profile_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_messages_on_campaign_id"
+    t.index ["profile_id"], name: "index_messages_on_profile_id"
+  end
+
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "instagram_id"
+    t.bigint "instagram_id"
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["instagram_id"], name: "index_profiles_on_instagram_id", unique: true
+    t.index ["username"], name: "index_profiles_on_username", unique: true
   end
 
+  add_foreign_key "messages", "campaigns"
+  add_foreign_key "messages", "profiles"
 end
