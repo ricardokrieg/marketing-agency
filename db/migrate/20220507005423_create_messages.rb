@@ -4,6 +4,7 @@ class CreateMessages < ActiveRecord::Migration[7.0]
       t.references :campaign, null: false, foreign_key: true, type: :uuid
       t.references :profile, null: false, foreign_key: true, type: :uuid
       t.text :content, null: false
+      t.datetime :delivered_at
 
       t.timestamps
     end
