@@ -29,6 +29,6 @@ describe CampaignProcessor do
   it "transitions campaign state" do
     expect {
       processor.process
-    }.to change(campaign, :state).from('draft').to 'completed'
+    }.to change(campaign, :state).from('draft').to 'processing'
   end
 end

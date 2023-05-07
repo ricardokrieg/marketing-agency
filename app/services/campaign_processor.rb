@@ -10,7 +10,5 @@ class CampaignProcessor
       profile = Profile.find_or_create_by!(username: target)
       @campaign.messages.create!(profile: profile, content: @campaign.content)
     end
-
-    @campaign.complete!
   end
 end

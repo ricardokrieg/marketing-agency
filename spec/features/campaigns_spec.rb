@@ -68,7 +68,7 @@ describe "Campaigns" do
     click_button 'Start'
 
     expect(page).to have_current_path(campaign_path(campaign))
-    expect(page).to have_content 'completed'
+    expect(page).to have_content 'processing'
     expect(page).not_to have_button 'Start'
     expect(page).to have_content 'Messages'
   end
