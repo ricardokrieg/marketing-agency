@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :account do
+    username { Faker::Internet.username(specifier: 10..15) }
+  end
+
   factory :message do
     campaign
     profile
