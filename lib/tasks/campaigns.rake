@@ -3,6 +3,6 @@ namespace :campaigns do
   task create: :environment do
     count = ENV['count'].presence || 1
     puts "Creating #{count} campaigns"
-    FactoryBot.create_list(:campaign, count.to_i)
+    FactoryBot.create_list(:campaign, count.to_i, :with_multiple_targets)
   end
 end
