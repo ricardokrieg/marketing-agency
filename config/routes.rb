@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :campaigns
+  resources :campaigns do
+    post :start, on: :member
+  end
 end

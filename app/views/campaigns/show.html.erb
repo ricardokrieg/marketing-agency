@@ -15,6 +15,21 @@
       <% end %>
     </ul>
   </dd>
+
+  <dt>Status</dt>
+  <dd><%= @campaign.state %></dd>
+
+  <% if @campaign.messages.any? %>
+    <dt>Messages</dt>
+    <dd>
+      <ul>
+        <% @campaign.messages.each do |message| %>
+          <li><%= message.content %></li>
+        <% end %>
+      </ul>
+    </dd>
+  <% end %>
 </dl>
 
 <%= button_to 'Delete', campaign_path(@campaign), method: :delete %>
+<%= button_to 'Start', start_campaign_path(@campaign), method: :post if @campaign.draft? %>

@@ -59,4 +59,17 @@ describe "Campaigns" do
     expect(page).not_to have_content 'First Campaign'
     expect(page).to have_content 'Second Campaign'
   end
+
+  it "starts a campaign" do
+    visit "/campaigns/#{campaign.id}"
+
+    expect(page).not_to have_content 'Messages'
+
+    click_button 'Start'
+
+    expect(page).to have_current_path(campaign_path(campaign))
+    expect(page).to have_content 'completed'
+    expect(page).not_to have_button 'Start'
+    expect(page).to have_content 'Messages'
+  end
 end

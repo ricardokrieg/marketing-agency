@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe CampaignProcessor do
-  let_it_be(:campaign) { create(:campaign, targets: "target1\ntarget2") }
-  let_it_be(:processor) { CampaignProcessor.new(campaign) }
+  let(:campaign) { create(:campaign, targets: "target1\ntarget2") }
+  let(:processor) { CampaignProcessor.new(campaign) }
 
   it "creates profiles from the targets" do
     expect {
@@ -24,5 +24,11 @@ describe CampaignProcessor do
     expect {
       processor.process
     }.to change(Message, :count).by(2)
+  end
+
+  it "transitions campaign state" do
+    expect {
+      processor.process
+    }.to change(campaign, :state).from('draft').to 'completed'
   end
 end

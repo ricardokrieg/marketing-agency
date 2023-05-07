@@ -43,6 +43,14 @@ class CampaignsController < ApplicationController
     redirect_to :campaigns
   end
 
+  def start
+    @campaign = Campaign.find(params[:id])
+
+    CampaignProcessor.new(@campaign).process
+
+    redirect_to @campaign
+  end
+
   private
 
   def create_params
