@@ -21,13 +21,7 @@
 
   <% if @campaign.messages.any? %>
     <dt>Messages</dt>
-    <dd>
-      <ul>
-        <% @campaign.messages.each do |message| %>
-          <li><%= message.content %></li>
-        <% end %>
-      </ul>
-    </dd>
+    <%= render @campaign.messages %>
   <% end %>
 </dl>
 
